@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+{% block title %} CarMart - AdminPanel {% endblock %}
+
+{% block content %}
+<!-- Nav pills -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='adminstyle.css')}}">
+<script type="text/javascript" src="{{ url_for('static', filename='dismisstoggle.js')}}"></script>
+
+<div class="div-admin">
+    <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link default active" data-bs-toggle="pill" href="#admins">Admin Accounts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link inactive" data-bs-toggle="pill" href="#suppliers">Supplier Accounts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link inactive" data-bs-toggle="pill" href="#users">User Accounts</a>
+  </li>
+</ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane container active" id="admins">
+      <h3>Admins
+        <form action="/regispaneladmin">
+          <button type="submit" class="add-ad">+</button>
+        </form>
+      </h3>
+      <div>
+        {% if counta == 0 %}
+        <p>There are no admins</p>
+        {% elif counta == 1 %}
+        <p>There is 1 admin</p>
+        {% else %}
+        <p>There are {{ counta }} admins</p>
+        {% endif %}
+      </div>
+      <br>
+      <table class="table table-striped ad-tb">
+      <thead>
+        <tr>
+          <th>Admin ID</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Email</th>
+          <th>Security Ans</th>
+          <th>Contact Number</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for admin in admins_list %}
+        <tr>
+          <td>{{ admin.get_admin_id() }}</td>
+          <td>{{ admin.get_username() }}</td>
+          <td>{{ admin.get_password() }}</td>
+          <td>{{ admin.get_email() }}</td>
+          <td>{{ admin.get_contact_no() }}</td>
+          <td>{{ admin.get_sec_ans() }}</td>
+
+          <td><a href="#" class="btn btn-warning">Update</a></td>
+          <td>
+            <form action="" method="POST">
+              <input type="submit" value="Delete" class="btn btn-danger">
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+        </tbody>
+      </table>
+      </table>
+    </div>
+<!--    <div class="tab-pane container fade" id="suppliers">-->
+<!--      <h3>Suppliers</h3>-->
+<!--      <div>-->
+<!--        {% if count == 0 %}-->
+<!--        <p>There are no users</p>-->
+<!--        {% elif count == 1 %}-->
+<!--        <p>There is 1 user</p>-->
+<!--        {% else %}-->
+<!--        <p>There are {{ count }} users</p>-->
+<!--        {% endif %}-->
+<!--      </div>-->
+<!--      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
+<!--      <br>-->
+<!--      <table class="table table-striped">-->
+<!--      <thead>-->
+<!--        <tr>-->
+<!--          <th>User ID</th>-->
+<!--          <th>Username</th>-->
+<!--          <th>Password</th>-->
+<!--          <th>Contact Number</th>-->
+<!--          <th>Security Ans</th>-->
+<!--          <th></th>-->
+<!--          <th></th>-->
+<!--        </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      {% for user in users_list %}-->
+<!--        <tr>-->
+<!--          <td>{{ user.get_user_id() }}</td>-->
+<!--          <td>{{ user.get_username() }}</td>-->
+<!--          <td>{{ user.get_password() }}</td>-->
+<!--          <td>{{ user.get_contact_no() }}</td>-->
+<!--          <td>{{ user.get_sec_ans() }}</td>-->
+<!--          <td><a href="#" class="btn btn-warning">Update</a></td>-->
+<!--          <td>-->
+<!--            <form action="" method="POST">-->
+<!--              <input type="submit" value="Delete" class="btn btn-danger">-->
+<!--            </form>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--      {% endfor %}-->
+<!--        </tbody>-->
+<!--      </table>-->
+<!--    </div>-->
+
+    <div class="tab-pane container fade" id="users">
+      <div class="ap-user-alert" id="ap-user-alert">
+        {% if 'user_created' in session %}
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="u-close" data-dismiss="alert" onclick="dismiss()">&times;</button>
+          New User: ["{{ session.pop('user_created', None) }}"] was created.
+        </div>
+        {% elif 'user_deleted' in session %}
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="u-close" data-dismiss="alert" onclick="dismiss()">&times;</button>
+          Existing User: ["{{ session.pop('user_deleted', None) }}"] was deleted.
+        </div>
+        {% elif 'user_updated' in session %}
+        <div class="alert alert-warning alert-dismissible">
+          <button type="button" class="u-close" data-dismiss="alert" onclick="dismiss()">&times;</button>
+          Existing User: ["{{ session.pop('user_updated', None) }}"] was updated.
+        </div>
+        {% endif %}
+      </div>
+      <h3>Users
+        <form action="/regispanel">
+          <button type="submit" class="add-u">+</button>
+        </form>
+      </h3>
+      <div>
+        {% if count == 0 %}
+        <p>There are no users</p>
+        {% elif count == 1 %}
+        <p>There is 1 user</p>
+        {% else %}
+        <p>There are {{ count }} users</p>
+        {% endif %}
+      </div>
+      <br>
+      <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Security Ops</th>
+          <th>Security Ans</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for user in users_list %}
+        <tr>
+          <td>{{ user.get_user_id() }}</td>
+          <td>{{ user.get_username() }}</td>
+          <td>{{ user.get_password() }}</td>
+          <td>{{ user.get_sec_ops() }}</td>
+          <td>{{ user.get_sec_ans() }}</td>
+          <td><a href="/updateUser/{{user.get_user_id()}}" class="btn btn-warning">Update</a></td>
+          <td>
+            <form action="{{url_for('delete_user', id=user.get_user_id())}}" method="POST">
+            <!-- Button to Open the Modal -->
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal_{{user.get_user_id()}}">
+              Delete
+            </button>
+
+            <!-- The Modal -->
+            <div class="modal" id="myModal_{{user.get_user_id()}}">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Delete Confirmation</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                    Are you sure you want to delete {{user.get_username()}}?
+                  </div>
+
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          </td>
+        </tr>
+      {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

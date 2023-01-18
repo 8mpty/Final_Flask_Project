@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %} CarMart - Update User {% endblock %}
+
+{% block content %}
+{% from "includes/__formHelper.html" import render_field %}
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uUstyle.css')}}">
+<script type="text/javascript" src="{{ url_for('static', filename='passtoggle.js')}}"></script>
+<div class="div-update">
+    <h1 class="update-user-title">Update Profile</h1>
+    <div class="update-form">
+        <div class="pic-box">
+<!--            {% for user in users_list%}-->
+<!--            <img src="static/img/{{user.get_prof_img()}}">-->
+<!--            {{ render_field(form.prof_img, class="form_control")}}-->
+<!--            {% endfor %}-->
+        </div>
+        <form method="POST" action="">
+            {{ render_field(form.username, class="form_control tb-u", id="username") }}
+            <span class="lbl-u placehld">Username</span>
+            <br>
+            {{ render_field(form.npass, type="password", class="form_control tb-p", id="password")}}
+            <span class="lbl-p placehld">Password</span>
+            <span class="eyes">
+                <i class="fa-solid fa-eye" onclick="passtoggle()"></i>
+            </span>
+            <br>
+            {{ render_field(form.sec_ops, class="form_control sec-ques", id="sec-ques")}}
+            <br>
+            {{ render_field(form.sec_ans, class="form_control tb-sc")}}
+            <span class="lbl-sc placehld">Security Question Answer</span>
+            <br>
+            {{ render_field(form.ship_addr, class="form_control tb-sha")}}
+            <span class="lbl-sha placehld">Shipping Address</span>
+            <br>
+
+            <button type="submit" class="ca-submit">Update Information</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} CarMart - RegistrationPanel {% endblock %}
+
+{% block content %}
+{% from "includes/__formHelper.html" import render_field %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='regisstyle.css')}}">
+<script type="text/javascript" src="{{ url_for('static', filename='passtoggle.js')}}"></script>
+<div class="regis-container">
+    <h1 class="regis-title">Registration</h1>
+    <form method="POST" action="">
+        {{ render_field(form.username, class="form_control tb-u", id="username") }}
+        <span class="lbl-u">Username</span>
+        <br>
+        {{ render_field(form.npass, type="password", class="form_control tb-p", id="password")}}
+        <span class="lbl-p">Password</span>
+        <span class="eyes">
+            <i class="fa-solid fa-eye" onclick="passtoggle()"></i>
+        </span>
+        <br>
+        {{ render_field(form.npass_con, type="password", class="form_control tb-pc", id="password2")}}
+        <script type="text/javascript" src="{{ url_for('static', filename='passwordcheck.js')}}"></script>
+        <div class="con_div">
+            <span class="lbl-pc">Confirm Password</span>
+            <span class="eyes">
+                <i class="fa-solid fa-eye" onclick="passtoggle_con()"></i>
+            </span>
+        </div>
+        <br>
+        {{ render_field(form.sec_ops, class="form_control", id="sec-ques")}}
+        <br>
+        {{ render_field(form.sec_ans, class="form_control tb-sc")}}
+        <span class="lbl-sc">Security Question Answer</span>
+        <br>
+
+        <button type="submit" class="ca-submit" onclick="valNpass()">Create Account</button>
+    </form>
+</div>
+{% endblock %}

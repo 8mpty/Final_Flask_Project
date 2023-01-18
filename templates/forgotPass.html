@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %} CarMart - Password Recovery Panel {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='recstyle.css')}}">
+<div class="rec-container">
+    <h1 class="rec-title">Reset Account Password</h1>
+    <input type="text" placeholder="Username" name="username" required>
+
+    <div class="sec-ops">
+        <select name="sec-ques" id="sec-ques">
+            <option selected disabled>Pick security question</option>
+            <option class="ops" value="favplc">What is your favourite place to visit?</option>
+            <option class="ops" value="sib">How many siblings do you have?</option>
+            <option class="ops" value="favmov">What is your favourite movie?</option>
+        </select>
+    </div>
+    <input type="text" placeholder="Security questions answer" name="txt-sec" required>
+    <input type="password" id="password" placeholder="New Password" name="password" required>
+    <span class="eye">
+        <i class="fa-solid fa-eye" onclick="passtoggle()"></i>
+    </span>
+    <button type="submit" class="fp-submit" >Reset</button>
+    <div class="rec-footer">
+        Contact the administrator if problem occurs
+        at <a href="mailto:xxxxxx@gmail.com" class="rec-fp" >xxxxxx@gmail.com</a>
+        or call <a href="tel:+65xxxxxxxx" class="rec-ca">xxxxxxxx</a>
+    </div>
+</div>
+{% endblock %}

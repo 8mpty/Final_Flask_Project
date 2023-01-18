@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %} CarMart - RegistrationPanel {% endblock %}
+
+{% block content %}
+{% from "includes/__formHelper.html" import render_field %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='regisstyle.css')}}">
+<script type="text/javascript" src="{{ url_for('static', filename='passtoggle.js')}}"></script>
+<div class="regis-container">
+    <h1 class="regis-title">ADMIN Registration</h1>
+        <form method="POST" action="">
+            {{ render_field(form.username, class="form_control", placeholder="Username") }}
+            <br>
+            {{ render_field(form.npass, type="password", class="form_control", placeholder="Password", id="password")}}
+            <span class="eyes">
+                <i class="fa-solid fa-eye" onclick="passtoggle()"></i>
+            </span>
+            <br>
+            {{ render_field(form.npass_con, type="password", class="form_control", placeholder="Confirm Password", id="password2")}}
+            <span class="eyes">
+                <i class="fa-solid fa-eye" onclick="passtoggle_con()"></i>
+            </span>
+            <br>
+            {{ render_field(form.sec_ops, class="form_control", id="sec-ques")}}
+            <br>
+            {{ render_field(form.sec_ans, class="form_control", placeholder="Security Question Answer")}}
+            <br>
+            <button type="submit" class="ca-submit">Create Account</button>
+        </form>
+</div>
+{% endblock %}

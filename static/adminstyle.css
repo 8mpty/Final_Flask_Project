@@ -1,0 +1,65 @@
+.div-admin{
+border: 5px solid black;
+border-radius: 20px;
+max-width: 1200px;
+padding: 30px;
+margin-top: 100px;
+margin-left: auto;
+margin-right: auto;
+margin-bottom: auto;
+}
+
+.div-admin .nav-link.active{
+border: 1px solid lightgreen;
+background: lightgreen;
+color: black;
+}
+
+.div-admin .nav-link.inactive, .default{
+color: black;
+}
+
+.tab-content{
+padding: 30px;
+}
+
+.add-ad, .add-u{
+display: flex;
+float: right;
+font-size: 20px;
+padding-top: 3px;
+padding-bottom: 7px;
+border-radius: 10px;
+border: 2px solid lightblue;
+background: none;
+}
+.add-ad:hover, .add-u:hover{
+background-color: lightblue;
+}
+
+.ad-tb{
+max-width: 1200px;
+padding-right: 10px;
+padding-left: 10px;
+}
+
+.ap-user-alert .u-close{
+background: none;
+font-size: 20px;
+border: none;
+color: none;
+}
+
+.btn-danger{
+background: none;
+color: red;
+}
+
+.btn-warning{
+background: none;
+border: 1px solid orange;
+}
+
+.btn-warning:hover{
+background: orange;
+}

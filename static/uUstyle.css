@@ -1,0 +1,106 @@
+.div-update {
+border: 5px solid black;
+border-radius: 30px;
+
+width: 1250px;
+height: 800px;
+
+margin-top: 100px;
+margin-bottom: 100px;
+margin-left: 300px;
+margin-right: 300px;
+
+padding: 50px;
+font-size: 15px;
+}
+
+
+.update-user-title{
+text-align: center;
+}
+
+.eyes{
+margin: 0px 10px;
+float: right;
+transform: translate(-30%, -155%);
+font-size: 25px;
+color: #7a797e;
+cursor: pointer;
+}
+
+.update-form input[type=text], .update-form input[type=password]{
+height: 50px;
+width:100%;
+margin: 15px;
+margin-left: 0px;
+font-size: 20px;
+border: 5px solid black;
+border-radius: 20px;
+padding-left: 10px;
+}
+
+.pic-box{
+width: 290px;
+height: 300px;
+border: 5px solid black;
+border-radius: 30px;
+margin: 30px;
+}
+
+.update-form{
+display: flex;
+margin-left: 70px;
+}
+
+.lbl-u, .lbl-p, .lbl-sc, .lbl-sha{
+float: left;
+font-size: 20px;
+pointer-events: none;
+transition: 0.5s;
+transform: translate(20%, -190%);
+}
+
+.tb-u:focus ~ .lbl-u,
+.tb-u:valid ~ .lbl-u,
+
+.tb-p:focus ~ .lbl-p,
+.tb-p:valid ~ .lbl-p,
+
+.tb-sc:focus ~ .lbl-sc,
+.tb-sc:valid ~ .lbl-sc,
+
+.tb-sha:focus ~ .lbl-sha,
+.tb-sha:valid ~ .lbl-sha{
+
+color: grey;
+transform: translateX(20px) translateY(-87px);
+font-size: 20px;
+padding: 0 8px;
+background: orange;
+border: none;
+border-radius: 50px;
+}
+
+#sec-ques {
+width: 100%;
+padding: 10px 15px;
+border: 1px solid orange;
+border-radius: 10px;
+background-color: orange;
+}
+
+.sec-ques{
+margin-top: -10px;
+}
+
+.ca-submit:hover{
+background: orange;
+}
+
+.ca-submit{
+background: lightgrey;
+padding: 15px;
+width: 200px;
+height: 60px;
+border-radius: 20px;
+}
